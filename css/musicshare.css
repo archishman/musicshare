@@ -1,18 +1,10 @@
-.bg-dark>a {
-    color: #fff
+.bg-spot {
+    background-color: #282828
 }
 
 a:hover {
     color: #fff;
     text-decoration: none
-}
-
-.container {
-    background-color: #06090A;
-}
-
-.bg-spot {
-    background-color:#282828;
 }
 
 .login-button {
@@ -50,4 +42,40 @@ a:hover {
     display: block;
     width: 100%;
     height: 10rem
+}
+
+.feedcard {
+    display: inline-block;
+    width: 50rem;
+    height: 100%;
+    position: fixed;
+    left: 50%;
+    margin-left: -25rem;
+    background-color: #282828;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+    color: #fff;
+    font-family: Helvetica;
+    text-align: center
+}
+
+.post-image {
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+}
+
+.post-image img {
+    height: auto;
+    width: 150px;
+}
+
+.navbar-nav { 
+    flex-direction: row;
+}
+.navbar-nav>li {
+    padding-left:25px;
+    padding-right:25px;
 }
