@@ -1,0 +1,29 @@
+a {
+    color: white;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.login-button {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #4162a3;
+    color: white;
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+    height: 30%;
+}
+
+.nav-link {
+    
+}
+
+.divider {
+    width: 5px;
+    height: 10px;
+}

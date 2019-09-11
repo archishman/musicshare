@@ -2,8 +2,38 @@
 <html>
     <head>
         <title>MusicShare Login</title>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/musicshare.css">
     </head>
     <body>
-        <a href={{auth_url}}> Login </a>
+        <header>
+            <nav class="navbar bg-dark">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a href="#" class="navbar-brand"> Home </a>
+                        </div>
+                        <ul class="nav navbar-nav mr-auto">
+                            <li class="active"><a href="main_feed.html" class="nav-link">Feed</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="active"><a href="login_page.html" class="nav-link">Login</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class='divider'></div>
+        </header>
+
+        <main>
+        <div class = "container">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="login-button"><a href={{auth_url}}><h4 class="card-title">Login</h4></a></div>
+                    <div class="divider"></div>
+                    <h6 class="card-subtitle mb-2 text-muted">With Spotify</h6>
+                </div>
+            </div>
+        </div>
+        </main>
+        
     </body>
 </html>
