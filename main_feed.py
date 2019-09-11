@@ -9,7 +9,7 @@ from urllib.parse import quote
 main_feed = Blueprint('main_feed', __name__,
                         template_folder='templates')
 
-@user_profile.route('/feed', methods=['GET'])
+@main_feed.route('/feed', methods=['GET'])
 def show():
     access_token = request.args.get('access_token')
     refresh_token = request.args.get('refresh_token')
@@ -20,4 +20,4 @@ def show():
         user_profile_api_endpoint = "{}/me".format(SPOTIFY_API_URL)
         profile_response = requests.get(user_profile_api_endpoint, headers=authorization_header)
         profile_data = json.loads(profile_response.text)
-        return render_template('user_profile.html', profile_data=profile_data)
+        return render_template('main_feed.html', profile_data=profile_data)

@@ -2,34 +2,39 @@
 <html>
     <head>
         <title>MusicShare Login</title>
-        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../css/musicshare.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <style>.bg-spot{background-color:#282828}a:hover{color:#fff;text-decoration:none}.login-button{font-family:Helvetica;border-bottom-left-radius:500px;border-bottom-right-radius:500px;border-top-left-radius:500px;border-top-right-radius:500px;color:#fff;padding:15px;background-color:#1db954;font-size:14px;line-height:1;text-transform:uppercase;transition:.3s;padding-left:50px;padding-right:50px;font-weight:bolder}.login-button:hover{background-color:#1ed760}.nav-link:hover{color:#4162a3}.divider{width:5px;height:10px;}.half-divider{display:block;width:100%;height:10rem}
+        </style>
     </head>
-    <body>
-        <header>
+    <body style="background-color: #06090A">
+        <header style="background-color: #06090A">
             <nav class="navbar bg-dark">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a href="#" class="navbar-brand"> Home </a>
+                            <a href="#" class="navbar-brand"> MusicShare </a>
                         </div>
                         <ul class="nav navbar-nav mr-auto">
-                            <li class="active"><a href="main_feed.html" class="nav-link">Feed</a></li>
+                            <li class="active"><a href="{{main_feed}}" class="nav-link">Feed</a></li>
                         </ul>
                         <ul class="nav navbar-nav ml-auto">
-                            <li class="active"><a href="login_page.html" class="nav-link">Login</a></li>
+                            <li class="active"><a href="{{login_page}}" class="nav-link">{{name}}</a></li>
                         </ul>
                     </div>
                 </nav>
-                <div class='half-divider'></div>
+                <div class='divider' style='height:10rem'></div>
         </header>
 
-        <main>
+        <main style="background-color: #06090A">
         <div class = "container">
-            <div class="card text-center" style="width:35rem">
+            <div class="card text-center bg-spot text-white" style="width:35rem; margin: 0 auto;">
                 <div class="card-body">
-                    <div class="login-button"><a href={{auth_url}}><h4 class="card-title">Login</h4></a></div>
-                    <div class="divider"></div>
-                    <h6 class="card-subtitle mb-2 text-muted">With Spotify</h6>
+                    <div class="divider" style="height:20px;"></div>
+                <h5 class="card-title">Welcome to MusicShare!</h5>
+                    <h6 class="card-subtitle mb-2">A fuckin' app</h6>
+                    <div class="divider" style="height:20px"></div>
+                    <p class="card-text">Click here for Spotify <br><br> <a class='login-button' href={{auth_url}}>Log In</a></p>
+                    <div class="divider" style="height:20px;"></div>
                 </div>
             </div>
         </div>

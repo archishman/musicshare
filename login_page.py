@@ -8,18 +8,12 @@ from urllib.parse import quote
 
 login_page = Blueprint('login_page', __name__,
                         template_folder='templates')
-auth_query_parameters = {
-    "response_type": "code",
-    "redirect_uri": REDIRECT_URI,
-    "scope": SCOPE,
-    "state": random_string(20),
-    # "show_dialog": SHOW_DIALOG_str,
-    "client_id": CLIENT_ID
-}
+
 @login_page.route('/')
 def show():    
     try:
-        return render_template('login_page.html', auth_url=url_for('login_page.authorize'))
+        return render_template('login_page.html', auth_url=url_for('login_page.authorize'), main_feed = url_for('main_feed.show')
+        , login_page = url_for('login_page.show'))
     except TemplateNotFound:
         abort(404)
 
@@ -27,11 +21,22 @@ def show():
 @login_page.route('/spotify_authorize', methods=['GET', 'POST'])
 def authorize():
     # Auth Step 1: Authorization
+    redirect_uri = request.args.get('redirect_uri', default=REDIRECT_URI)
+    auth_query_parameters = {
+        "response_type": "code",
+        "redirect_uri": redirect_uri,
+        "scope": SCOPE,
+        "state": random_string(20),
+        # "show_dialog": SHOW_DIALOG_str,
+        "client_id": CLIENT_ID
+    }
     url_args = "&".join(["{}={}".format(key, quote(val)) for key, val in auth_query_parameters.items()])
     auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
     return redirect(auth_url)
 
-
+@login_page.route('/refresh_token/')
+def refresher():
+    
 @login_page.route('/callback/')
 def callback():
     # Auth Step 4: Requests refresh and access tokens

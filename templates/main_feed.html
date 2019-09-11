@@ -4,13 +4,29 @@
         <title>Feed</title>
     </head>
     <body>
-        <table border = 1>
+        <!-- <table border = 1>
             {%for key in posts %}
             <tr>
                     <th> {{ key }} </th>
                     <td> {{ profile_data[key] }} </td>
             </tr>
             {% endfor %}        
-      </table>
+      </table> -->
+      <header>
+            <nav class="navbar bg-dark">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a href="#" class="navbar-brand"> MusicShare </a>
+                        </div>
+                        <ul class="nav navbar-nav mr-auto">
+                            <li class="active"><a href="{{main_feed}}" class="nav-link">Feed</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="active"><a href="{{login_page}}" class="nav-link">Login</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class='half-divider'></div>
+        </header>
     </body>
 </html>

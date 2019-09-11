@@ -1,35 +1,53 @@
-a {
-    color: white;
+.bg-dark>a {
+    color: #fff
 }
 
 a:hover {
-    color: white;
-    text-decoration: none;
+    color: #fff;
+    text-decoration: none
+}
+
+.container {
+    background-color: #06090A;
+}
+
+.bg-spot {
+    background-color:#282828;
 }
 
 .login-button {
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 5px;
-    background-color: #4162a3;
-    color: white;
-    display: block;
-    margin: 0 auto;
-    width: 40%;
-    height: 30%;
+    font-family: Helvetica;
+    border-bottom-left-radius: 500px;
+    border-bottom-right-radius: 500px;
+    border-top-left-radius: 500px;
+    border-top-right-radius: 500px;
+    color: #fff;
+    padding: 15px;
+    background-color: #1db954;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+    transition: .3s;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-weight: bolder
+}
+
+.login-button:hover {
+    background-color: #1ed760
 }
 
 .nav-link:hover {
-    color: #4162a3;
+    color: #4162a3
 }
 
 .divider {
     width: 5px;
-    height: 10px;
+    height: 10px
 }
 
 .half-divider {
-    display:block;
+    display: block;
     width: 100%;
-    height: 10rem;
+    height: 10rem
 }
