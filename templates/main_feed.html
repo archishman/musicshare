@@ -6,7 +6,9 @@
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
                 <!-- <style>.bg-spot{background-color:#282828}a:hover{color:#fff;text-decoration:none}.login-button{font-family:Helvetica;border-bottom-left-radius:500px;border-bottom-right-radius:500px;border-top-left-radius:500px;border-top-right-radius:500px;color:#fff;padding:15px;background-color:#1db954;font-size:14px;line-height:1;text-transform:uppercase;transition:.3s;padding-left:50px;padding-right:50px;font-weight:bolder}.login-button:hover{background-color:#1ed760}.nav-link:hover{color:#4162a3}.divider{width:5px;height:10px}.half-divider{display:block;width:100%;height:10rem}.feedcard{display:inline-block;width:50rem;position:fixed;height:100%;background-color:#282828;border-top-left-radius:.25rem;border-top-right-radius:.25rem;border-bottom-left-radius:.25rem;border-bottom-right-radius:.25rem;color:#fff;font-family:Helvetica;text-align:center}
                 </style> -->
-                <link rel="stylesheet" href="../css/musicshare.css">
+                <style>.bg-spot{background-color:#282828}a:hover{color:#fff;text-decoration:none}.login-button{font-family:Helvetica;border-bottom-left-radius:500px;border-bottom-right-radius:500px;border-top-left-radius:500px;border-top-right-radius:500px;color:#fff;padding:15px;background-color:#1db954;font-size:14px;line-height:1;text-transform:uppercase;transition:.3s;padding-left:50px;padding-right:50px;font-weight:bolder}.login-button:hover{background-color:#1ed760}.nav-link:hover{color:#4162a3}.divider{width:5px;height:10px}.half-divider{display:block;width:100%;height:10rem}.feedcard{display:inline-block;width:50rem;height:100%;position:fixed;left:50%;margin-left:-25rem;background-color:#282828;border-top-left-radius:.25rem;border-top-right-radius:.25rem;border-bottom-left-radius:.25rem;border-bottom-right-radius:.25rem;color:#fff;font-family:Helvetica;text-align:center}.post-image{height:150px;width:150px;overflow:hidden}.post-image img{height:auto;width:150px}.navbar-nav{flex-direction:row}.navbar-nav>li{padding-left:25px;padding-right:25px}
+                </style>
+                <!-- <link rel="stylesheet" href="../css/musicshare.css"> -->
                 <script
                 src="https://code.jquery.com/jquery-3.4.1.min.js"
                 integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -19,6 +21,8 @@
                     //         alert('page content: ' + data);
                     //     }
                     // );
+                    const link = 'https://open.spotify.com/embed/track/';
+                    var posts = [{'text': 'Great Song!', 'URI': '0vFOzaXqZHahrZp6enQwQb'},{'text': 'Great Song!', 'URI': '0vFOzaXqZHahrZp6enQwQb'}]
                 </script>
                 <script src="https://sdk.scdn.co/spotify-player.js"></script>
                 <script type="text/javascript">
@@ -27,15 +31,8 @@
                     };
                 </script>
             </head>
-        <!-- <table border = 1>
-            {%for key in posts %}
-            <tr>
-                    <th> {{ key }} </th>
-                    <td> {{ profile_data[key] }} </td>
-            </tr>
-            {% endfor %}        
-      </table> -->
-      <body style="background-color: #06090A">
+        
+      <body style="background-color: #06090A" style="overflow:visible;">
             <header style="background-color: #06090A">
                 <nav class="navbar bg-dark">
                         <div class="container-fluid">
@@ -53,9 +50,9 @@
                     <div class='divider' style='height:3rem'></div>
             </header>
 
-        <div class="container">
+        <div class="container" style="overflow:visible;">
                 <!-- <div class="card text-center bg-spot text-white" style="width:35rem; margin: 0 auto;"> -->
-                <div class="feedcard">
+                <div class="feedcard" id='feedcard' style="overflow:visible;">
                     <div class="card-body">
                         <div class="divider" style="height:20px;"></div>
                         <h5 class="card-title">Feed</h5>
@@ -77,6 +74,13 @@
             window.onload = () => {
                 document.getElementById('player').src='https://open.spotify.com/embed/track/'+"{{URI}}";
             }
+            function add(str) {
+                        document.getElementById('feedcard').innerHTML += str;
+                        console.log("done!");
+                    }
+                    for (post in posts) {
+                        add('<div class="card bg-spot text-white" style="width:35rem; margin: 0 auto; text-align:left;"><div class="card-body"><p class="card-text">{{text}}</p><div class="divider" style="height:20px;"></div><iframe src=' + link + '0vFOzaXqZHahrZp6enQwQb' + ' id="player"  width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div></div>');
+                    }
         </script>
     </body>
 </html>
