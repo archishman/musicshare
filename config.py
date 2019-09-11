@@ -8,7 +8,7 @@ SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
 SPOTIFY_API_BASE_URL = "https://api.spotify.com"
 API_VERSION = "v1"
 SPOTIFY_API_URL = "{}/{}".format(SPOTIFY_API_BASE_URL, API_VERSION)
-
+FIREBASE_URL = "https://musicshare-ca88e.firebaseio.com/"
 # Server-side Parameters
 CLIENT_SIDE_URL = "http://127.0.0.1"
 REDIRECT_URI = "http://localhost:8080/callback/"
