@@ -1,9 +1,32 @@
 <!doctype html>
 <html>
-    <head>
-        <title>Feed</title>
-    </head>
-    <body>
+        <head>
+                <title>Feed</title>
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+                <!-- <style>.bg-spot{background-color:#282828}a:hover{color:#fff;text-decoration:none}.login-button{font-family:Helvetica;border-bottom-left-radius:500px;border-bottom-right-radius:500px;border-top-left-radius:500px;border-top-right-radius:500px;color:#fff;padding:15px;background-color:#1db954;font-size:14px;line-height:1;text-transform:uppercase;transition:.3s;padding-left:50px;padding-right:50px;font-weight:bolder}.login-button:hover{background-color:#1ed760}.nav-link:hover{color:#4162a3}.divider{width:5px;height:10px}.half-divider{display:block;width:100%;height:10rem}.feedcard{display:inline-block;width:50rem;position:fixed;height:100%;background-color:#282828;border-top-left-radius:.25rem;border-top-right-radius:.25rem;border-bottom-left-radius:.25rem;border-bottom-right-radius:.25rem;color:#fff;font-family:Helvetica;text-align:center}
+                </style> -->
+                <link rel="stylesheet" href="../css/musicshare.css">
+                <script
+                src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                crossorigin="anonymous"></script>
+                <script type="text/javascript">
+                    // $.get(
+                    //     "somepage.php",
+                    //     {paramOne : 1, paramX : 'abc'},
+                    //     function(data) {
+                    //         alert('page content: ' + data);
+                    //     }
+                    // );
+                </script>
+                <script src="https://sdk.scdn.co/spotify-player.js"></script>
+                <script type="text/javascript">
+                    window.onSpotifyWebPlaybackSDKReady = () => {
+                        // You can now initialize Spotify.Player and use the SDK
+                    };
+                </script>
+            </head>
         <!-- <table border = 1>
             {%for key in posts %}
             <tr>
@@ -12,21 +35,48 @@
             </tr>
             {% endfor %}        
       </table> -->
-      <header>
-            <nav class="navbar bg-dark">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <a href="#" class="navbar-brand"> MusicShare </a>
+      <body style="background-color: #06090A">
+            <header style="background-color: #06090A">
+                <nav class="navbar bg-dark">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <a href="#" class="navbar-brand"> MusicShare </a>
+                            </div>
+                            <ul class="nav navbar-nav mr-auto">
+                                <li class="active"><a href="{{main_feed}}" class="nav-link">Feed</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav ml-auto">
+                                <li class="active"><a href="{{login_page}}" class="nav-link">{{name}}</a></li>
+                            </ul>
                         </div>
-                        <ul class="nav navbar-nav mr-auto">
-                            <li class="active"><a href="{{main_feed}}" class="nav-link">Feed</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="active"><a href="{{login_page}}" class="nav-link">Login</a></li>
-                        </ul>
+                    </nav>
+                    <div class='divider' style='height:3rem'></div>
+            </header>
+
+        <div class="container">
+                <!-- <div class="card text-center bg-spot text-white" style="width:35rem; margin: 0 auto;"> -->
+                <div class="feedcard">
+                    <div class="card-body">
+                        <div class="divider" style="height:20px;"></div>
+                        <h5 class="card-title">Feed</h5>
+                        <div class="divider" style="height:20px"></div>
+                        <div class="divider" style="height:20px;"></div>
                     </div>
-                </nav>
-                <div class='half-divider'></div>
-        </header>
+                
+                    <div class="card bg-spot text-white" style="width:35rem; margin: 0 auto; text-align:left;">
+                        <div class="card-body">
+                            <p class="card-text">{{text}}</p>
+                            <div class="divider" style="height:20px;"></div>
+                            <iframe id='player'  width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        </div>
+                    </div>
+        
+                </div>
+        </div>
+        <script>
+            window.onload = () => {
+                document.getElementById('player').src='https://open.spotify.com/embed/track/'+"{{URI}}";
+            }
+        </script>
     </body>
 </html>
