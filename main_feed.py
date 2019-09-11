@@ -28,6 +28,9 @@ def show():
             posts = posts + p        
         return render_template('main_feed.html', posts=posts)
     
+@main_feed.route('/feed_test')
+def shhhoow():
+    return render_template('main_feed.html', URI='0vFOzaXqZHahrZp6enQwQb')
 @main_feed.route('/create_post') #SECURITY FLAWWWWWWWWWW FIX ASAP
 def create_post():
     text = request.args.get('caption')
