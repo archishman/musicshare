@@ -21,15 +21,10 @@
                     const link = 'https://open.spotify.com/embed/track/';
                     var posts = [{'text': 'Great Song!', 'URI': '0vFOzaXqZHahrZp6enQwQb'},{'text': 'Great Song!', 'URI': '0vFOzaXqZHahrZp6enQwQb'}]
                 </script>
-                <script src="https://sdk.scdn.co/spotify-player.js"></script>
-                <script type="text/javascript">
-                    window.onSpotifyWebPlaybackSDKReady = () => {
-                        // You can now initialize Spotify.Player and use the SDK
-                    };
-                </script>
             </head>
         
       <body style="background-color: #06090A" style="overflow:visible;">
+            <!--Navigation Bar-->
             <header style="background-color: #06090A">
                 <nav class="navbar bg-dark">
                         <div class="container-fluid">
@@ -48,7 +43,8 @@
                     </nav>
                     <div class='divider' style='height:3rem'></div>
             </header>
-
+        
+        <!--Main Body-->
         <div class="container">
                 <div class="feedcard" id='feedcard'>
                     <div class="card-body">
@@ -60,10 +56,12 @@
                 </div>
         </div>
         <script>
+            //add to main HTML content on screen
             function add(str) {
                         document.getElementById('feedcard').innerHTML += str;
                         console.log("done!");
                     }
+            //load all posts
             for (var x = 0; x < posts.length; x++) {
                 add('<div class="card bg-spot text-white" style="width:35rem; margin: 0 auto; text-align:left;"><div class="card-body"><p class="card-text">{{text}}</p><div class="divider" style="height:20px;"></div><iframe src=' + link + posts[x].URI + ' id="player"  width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div></div>');
             }
