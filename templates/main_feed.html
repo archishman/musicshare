@@ -47,6 +47,7 @@
                     border: 3px solid rgba(255,255,255,0.4);
                     cursor: pointer;
                     padding: 25px;
+                    margin-left:1.7rem;
                 }
                 </style>
                 <script
@@ -98,7 +99,17 @@
                     </div>  
                     <div class="post-button" onclick="makePost()"></div>  
                     <div id="holder">
-                        
+                            <div id="poster" class="bg-spot card text-white"style="width:35rem;margin:0 auto;text-align:left;display:none;">
+                                    <div class=card-body style=text-align:center>
+                                        <h3 class=card-text>Make a Canary Post:</h3>
+                                        <div class=divider style=height:20px></div>
+                                        <input class=songsearch placeholder="Search for a song!">
+                                        <div class=divider style=height:1rem></div>
+                                        <input class=description placeholder="Say something about it!"rows=3>
+                                        <div class=divider style=height:1rem></div>
+                                        <button class="btn btn-primary"style=font-size:14px type=button>Post</button>
+                                    </div>
+                            </div>
                     </div>
           
                 </div>
@@ -113,8 +124,21 @@
                 add('<div class="card bg-spot text-white" style="width:35rem; margin: 0 auto; text-align:left; margin-top:20px;"><div class="card-body"><p class="card-text">{{text}}</p><div class="divider" style="height:20px;"></div><iframe src=' + link + posts[x].URI + ' id="player"  width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div></div>');
             }
             function makePost() {
-                document.getElementById('holder').innerHTML += '<div class="bg-spot card text-white"style="width:35rem;margin:0 auto;text-align:left"><div class=card-body style=text-align:center><h3 class=card-text>Make a Canary Post:</h3><div class=divider style=height:20px></div><input class=songsearch placeholder="Search for a song!"><div class=divider style=height:1rem></div><input class=description placeholder="Say something about it!"rows=3><div class=divider style=height:1rem></div><button class="btn btn-primary"style=font-size:14px type=button>Post</button></div></div>';
+                var poster = document.getElementById('poster');
+                if (poster.style.display != 'block') {
+                    poster.style.display = 'block';
+                }
+                else {
+                    poster.style.display = 'none';
+                }
             }
+
+
+            $('#holder').click(function(){
+                $.get(Url, function(data, status) {
+
+                })
+            })
         </script>
     </body>
 </html>
