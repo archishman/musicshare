@@ -25,6 +25,12 @@
     width: 8rem;
 }
         </style>
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous">
+    </script>
     </head>
     <body style="background-color: #06090A">
             <header style="background-color: #06090A">
@@ -61,8 +67,50 @@
                   
         
 
-              </div>        
+              </div>    
+              <div>
+                  <input id="field"></input>
+                  <button id="search" onclick="search();">Monk</button>
+                  <p id='poster'></p>
+              </div>    
         </main>
         
+    <script>
+    // $('#search').click(function(){
+    //         const Url = 'https://api.spotify.com/v1/search?q=' + String($('#field').innerHTML);
+    //         $.get(Url, function(data, status) {
+    //             $('#poster').innerHTML += String(data);
+    //             console.log(data);
+    //         })
+    //     });
+    const link = 'https://open.spotify.com/embed/track/';
+    function add(str) {
+                        document.getElementById('poster').innerHTML += str;
+                    }
+    function search() {
+        $.ajax({
+         url: 'https://api.spotify.com/v1/search?q=' + $('#field')[0].value + '&type=track&limit=10',
+         type: "GET",
+         headers: {'Authorization': 'Bearer {{token}}'},
+         success: function(data) { 
+            const result = data.tracks.items
+            for (var i = 0; i < result.length; i++) {
+                artists = result[i].artists.map(artist => artist.name).join(', ');
+                add(' \
+                <div class="card"> \
+                <div class="card-body"> \
+                        <div class="divider" style="height:20px;"></div> \
+                        <h5 class="card-title">' + result[i].name + '</h5> \
+                        <p class="card-text">' + artists + '</p> \
+                        <div class="divider" style="height:20px"></div> \
+                        <div class="divider" style="height:20px;"></div> \
+                </div> \
+                </div> \
+                ');
+            }
+        }
+      });
+    }
+    </script>
     </body>
 </html>

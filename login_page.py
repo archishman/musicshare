@@ -33,6 +33,7 @@ def authorize():
     }
     url_args = "&".join(["{}={}".format(key, quote(val)) for key, val in auth_query_parameters.items()])
     auth_url = "{}/?{}".format(SPOTIFY_AUTH_URL, url_args)
+    print('Monk: ' + auth_url)
     return redirect(auth_url)
 @login_page.route('/refresh_token', methods=['GET'])
 def refresh():    
@@ -92,7 +93,5 @@ def callback():
     firebase_update_payload = {'user': user_id, 'refresh_token': refresh_token, 'expiry': expiry_time}
     update_user_token = requests.patch('{}/tokens/{}.json'.format(FIREBASE_URL, access_token), data=json.dumps(firebase_update_payload))
 
-    return redirect("/me?access_token={}&refresh_token={}".format(access_token, refresh_token))
-
-
-    
+#   return redirect("/me?access_token={}&refresh_token={}".format(access_token, refresh_token))
+    return redirect("/feed?access_token={}&refresh_token={}".format(access_token, refresh_token))

@@ -4,7 +4,7 @@
                 <title>Feed</title>
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-                <style>.bg-spot{background-color:#282828}a:hover{color:#fff;text-decoration:none}.login-button{font-family:Helvetica;border-bottom-left-radius:500px;border-bottom-right-radius:500px;border-top-left-radius:500px;border-top-right-radius:500px;color:#fff;padding:15px;background-color:#1db954;font-size:14px;line-height:1;text-transform:uppercase;transition:.3s;padding-left:50px;padding-right:50px;font-weight:bolder}.login-button:hover{background-color:#1ed760}.nav-link:hover{color:#4162a3}.divider{width:5px;height:10px}.half-divider{display:block;width:100%;height:10rem}.feedcard{width:50rem;height:100%;position:absolute;overflow-y:hidden;overflow-x:hidden;left:50%;margin-left:-25rem;background-color:#282828;border-top-left-radius:.25rem;border-top-right-radius:.25rem;border-bottom-left-radius:.25rem;border-bottom-right-radius:.25rem;color:#fff;font-family:Helvetica;text-align:center}.post-image{height:150px;width:150px;}.post-image img{height:auto;width:150px}.navbar-nav{flex-direction:row}.navbar-nav>li{padding-left:25px;padding-right:25px}.navbar-nav{flex-direction:row}.navbar-nav>li{padding-left:25px;padding-right:25px}
+                <style>.bg-spot{background-color:#282828}a:hover{color:#fff;text-decoration:none}.login-button{font-family:Helvetica;border-bottom-left-radius:500px;border-bottom-right-radius:500px;border-top-left-radius:500px;border-top-right-radius:500px;color:#fff;padding:15px;background-color:#1db954;font-size:14px;line-height:1;text-transform:uppercase;transition:.3s;padding-left:50px;padding-right:50px;font-weight:bolder}.login-button:hover{background-color:#1ed760}.nav-link:hover{color:#4162a3}.divider{width:5px;height:10px}.half-divider{display:block;width:100%;height:10rem}.feedcard{width:50rem;position:absolute;left:50%;margin-left:-25rem;background-color:#282828;border-top-left-radius:.25rem;border-top-right-radius:.25rem;border-bottom-left-radius:.25rem;border-bottom-right-radius:.25rem;color:#fff;font-family:Helvetica;text-align:center;padding-bottom:100%;}.post-image{height:150px;width:150px;}.post-image img{height:auto;width:150px}.navbar-nav{flex-direction:row}.navbar-nav>li{padding-left:25px;padding-right:25px}.navbar-nav{flex-direction:row}.navbar-nav>li{padding-left:25px;padding-right:25px}
                 .songsearch {
                     width:30rem;
                 }
@@ -48,6 +48,24 @@
                     cursor: pointer;
                     padding: 25px;
                     margin-left:1.7rem;
+                }
+                .dropdown {
+                    border:none;
+                    width: 30rem;
+                    box-shadow:none;
+                    padding:5px;
+                    transition:all 0.2s;
+                    font-family:Helvetica;
+                    background-color: #06090A;
+                    color:white;
+                    margin: 0 auto;
+                    border-bottom: solid white;
+                    border-top: solid white;
+                }
+                .dropdown:hover {
+                    background-color: white;
+                    color:#06090A;
+                    cursor: pointer;
                 }
                 </style>
                 <script
@@ -96,18 +114,19 @@
                         <h5 class="card-title">Feed</h5>
                         <div class="divider" style="height:20px"></div>
                         <div class="divider" style="height:20px;"></div>
-                    </div>  
+                    </div>
                     <div class="post-button" onclick="makePost()"></div>  
                     <div id="holder">
                             <div id="poster" class="bg-spot card text-white"style="width:35rem;margin:0 auto;text-align:left;display:none;">
-                                    <div class=card-body style=text-align:center>
-                                        <h3 class=card-text>Make a Canary Post:</h3>
-                                        <div class=divider style=height:20px></div>
-                                        <input class=songsearch placeholder="Search for a song!">
-                                        <div class=divider style=height:1rem></div>
-                                        <input class=description placeholder="Say something about it!"rows=3>
-                                        <div class=divider style=height:1rem></div>
-                                        <button class="btn btn-primary"style=font-size:14px type=button>Post</button>
+                                    <div class="card-body" style="text-align:center">
+                                        <h3 class="card-text">Make a Canary Post:</h3>
+                                        <div class="divider" style="height:20px"></div>
+                                        <input id="field" class="songsearch" placeholder="Search for a song!">
+                                        <div id="dropdown"></div>
+                                        <div class="divider" style="height:1rem"></div>
+                                        <input class="description" placeholder="Say something about it!"rows=3>
+                                        <div class="divider" style="height:1rem"></div>
+                                        <button id="search" class="btn btn-primary"style="font-size:14px" type="button">Post</button>
                                     </div>
                             </div>
                     </div>
@@ -120,9 +139,10 @@
                         document.getElementById('feedcard').innerHTML += str;
                     }
             //load all posts
-            for (var x = 0; x < posts.length; x++) {
-                add('<div class="card bg-spot text-white" style="width:35rem; margin: 0 auto; text-align:left; margin-top:20px;"><div class="card-body"><p class="card-text">{{text}}</p><div class="divider" style="height:20px;"></div><iframe src=' + link + posts[x].URI + ' id="player"  width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div></div>');
-            }
+            // for (var x = 0; x < posts.length; x++) {
+            //     //add('<div class="card bg-spot text-white" style="width:35rem; margin: 0 auto; text-align:left; margin-top:20px;"><div class="card-body"><p class="card-text">{{text}}</p><div class="divider" style="height:20px;"></div><iframe src=' + link + posts[x].URI + ' id="player"  width="82px" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></div></div>');
+            //     add('<div class="card bg-spot text-white" style="width:35rem; margin: 0 auto; text-align:left; margin-top:20px;"><div class="card-body"><p class="card-text">{{text}}</p><div class="divider" style="height:20px;"></div><iframe src=' + link + posts[x].URI + ' id="player"  width="82px" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">/iframe><p class="card-text">Hey man</p><</div></div>');
+            // }
             function makePost() {
                 var poster = document.getElementById('poster');
                 if (poster.style.display != 'block') {
@@ -132,13 +152,51 @@
                     poster.style.display = 'none';
                 }
             }
+            function add2(str) {
+                $('#dropdown')[0].innerHTML = str;
+            }
 
+            $('#field').keypress(() => setTimeout(() => search(), 100));
 
-            $('#holder').click(function(){
-                $.get(Url, function(data, status) {
-
-                })
-            })
+            function search() {
+                $.ajax({
+                    url: 'https://api.spotify.com/v1/search?q=' + $('#field')[0].value + '&type=track&limit=3',
+                    type: "GET",
+                    headers: {'Authorization': 'Bearer {{token}}'},
+                    success: function(data) { 
+                        const result = data.tracks.items;
+                        var fstr = '';
+                        var uri = '';
+                        console.log(result);
+                        for (var i = 0; i < result.length; i++) {
+                            artists = result[i].artists.map(artist => artist.name).join(', ');
+                            fstr += ' \
+                            <div class="dropdown" data-uri="' + result[i].id + '"> \
+                                    <h5 class="card-title">' + result[i].name + '</h5> \
+                                    <p class="card-text">' + artists + '</p> \
+                                    <img src="' + result[i].album.images[2].url + '"></img> \
+                            </div> \
+                            ';
+                        }
+                        add2(fstr);
+                        $('div.dropdown').each(function() {
+                            var t = $(this);
+                            t.click(function() {
+                                $('#field')[0].style.display='none';
+                                dropdowns = $('div.dropdown');
+                                for (var x = 0; x < dropdowns.length; x++) {
+                                    var el = dropdowns[x];
+                                    if (t[0] != el) el.style.display='none';
+                                }
+                                console.log(t[0].dataset.uri);
+                                $('#search').click(function() {
+                                    add('<div class="card bg-spot text-white" style="width:35rem; margin: 0 auto; text-align:left; margin-top:20px;"><div class="card-body"><p class="card-text">{{text}}</p><div class="divider" style="height:20px;"></div><iframe src=' + link + t[0].dataset.uri + ' id="player"  width="82px" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media">/iframe><p class="card-text">Hey man</p><</div></div>');
+                                })
+                            })
+                        })
+                    }
+                });
+            }
         </script>
     </body>
 </html>
